@@ -1,9 +1,8 @@
+console.log('chrome ext background script');
 
-console.log("Background Script Running");
-function check() {
-    document.getElementById('url').value = 'new value here'
-} 
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('button').addEventListener('click', check);
-    main();
-  });
+chrome.runtime.onMessage.addListener(receiver);
+function receiver(request, sender, sendResponse) {
+  word = request.text;
+  console.log(word);
+  window.open("popup.html", "extension_popup", "width=300,height=400,status=no,scrollbars=yes,resizable=no");
+}
